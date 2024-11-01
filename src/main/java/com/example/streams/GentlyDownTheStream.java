@@ -21,55 +21,83 @@ public class GentlyDownTheStream {
                                     .collect(Collectors.toList());
     }
 
-    // TODO - return a list of sorted fruits based on the fruits list
+    // Return a list of sorted fruits based on the fruits list
     public List<String> sortedFruits() {
         return fruits.stream()
-                     .sorted()
-                     .collect(Collectors.toList());
+                .sorted()
+                .collect(Collectors.toList());
     }
 
-    // TODO - return a list of sorted fruits with all fruits filtered out that start with "A"
+    // Return a list of sorted fruits with all fruits filtered out that start with "A"
     public List<String> sortedFruitsException() {
-        return null;
+        return fruits.stream()
+                .filter(fruit -> !fruit.startsWith("A")) // Filter out fruits starting with "A"
+                .sorted()
+                .collect(Collectors.toList());
     }
 
-    // TODO - return a list with the first 2 elements of a sorted list of fruits
+    // Return a list with the first 2 elements of a sorted list of fruits
     public List<String> sortedFruitsFirstTwo() {
-        return null;
+        return fruits.stream()
+                .sorted()
+                .limit(2) // Limit to first 2 elements
+                .collect(Collectors.toList());
     }
 
-    // TODO - return a comma separated String of sorted fruits
+    // Return a comma-separated String of sorted fruits
     public String commaSeparatedListOfFruits() {
-        return null;
+        return fruits.stream()
+                .sorted()
+                .collect(Collectors.joining(", ")); // Join with commas
     }
 
-    // TODO - return a list of veggies that are sorted in reverse (descending) order
+    // Return a list of veggies that are sorted in reverse (descending) order
     public List<String> reverseSortedVeggies() {
-        return null;
+        return veggies.stream()
+                .sorted(Comparator.reverseOrder()) // Sort in reverse order
+                .collect(Collectors.toList());
     }
 
-    // TODO - return a list of veggies that are sorted in reverse order, and all in upper case
+    // Return a list of veggies that are sorted in reverse order, and all in upper case
     public List<String> reverseSortedVeggiesInUpperCase() {
-        return null;
+        return veggies.stream()
+                .sorted(Comparator.reverseOrder())
+                .map(String::toUpperCase) // Convert to upper case
+                .collect(Collectors.toList());
     }
 
-    // TODO - return a list of the top 10 values in the list of random integers
+    // Return a list of the top 10 values in the list of random integers
     public List<Integer> topTen() {
-        return null;
+        return integerValues.stream()
+                .sorted(Comparator.reverseOrder()) // Sort in reverse order
+                .limit(10) // Limit to top 10
+                .collect(Collectors.toList());
     }
 
-    // TODO - return a list of the top 10 unique values in the list of random integers
+    // Return a list of the top 10 unique values in the list of random integers
     public List<Integer> topTenUnique() {
-        return null;
+        return integerValues.stream()
+                .distinct() // Remove duplicates
+                .sorted(Comparator.reverseOrder())
+                .limit(10)
+                .collect(Collectors.toList());
     }
 
-    // TODO - return a list of the top 10 unique values in the list of random integers that are odd
+    // Return a list of the top 10 unique values in the list of random integers that are odd
     public List<Integer> topTenUniqueOdd() {
-        return null;
+        return integerValues.stream()
+                .distinct()
+                .filter(value -> value % 2 != 0) // Filter for odd values
+                .sorted(Comparator.reverseOrder())
+                .limit(10)
+                .collect(Collectors.toList());
     }
 
-    // TODO - return a single value that represents the average of all of your random numbers
+    // Return a single value that represents the average of all of your random numbers
     public Double average() {
-        return null;
+        return integerValues.stream()
+                .mapToInt(Integer::intValue) // Convert to IntStream
+                .average() // Calculate average
+                .orElse(0.0); // Return 0.0 if no values
     }
 }
